@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "pino-mongodb": "^5.0.0"
+  }
+}

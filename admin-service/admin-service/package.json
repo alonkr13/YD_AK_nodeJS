@@ -1,0 +1,24 @@
+{
+  "name": "admin-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jest": "^30.2.0",
+    "mongoose": "^9.1.5",
+    "pino": "^10.2.1",
+    "pino-http": "^11.0.0",
+    "pino-mongodb": "^5.0.0",
+    "supertest": "^7.2.2"
+  }
+}
