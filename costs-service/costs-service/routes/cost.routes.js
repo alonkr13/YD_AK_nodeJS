@@ -22,18 +22,24 @@ router.get('/report', async (req, res) => {
         const start = new Date(year, month - 1, 1)
         const end = new Date(year, month, 1)
 
-        const costs = await Cost.find({
+        const costItems = await Cost.find({
             userid: Number(id),
             date: { $gte: start, $lt: end }
         })
 
-        const categories = ['food','health','housing','sport','education','transportation','other']
-        const report = {}
-        categories.forEach(cat => {
-            report[cat] = costs.filter(c => c.category === cat).reduce((acc, c) => acc + c.sum, 0)
+        const categories = ['food', 'health', 'housing', 'sport', 'education']
+        const costs = categories.map(cat => {
+            const items = costItems
+                .filter(c => c.category === cat)
+                .map(c => ({
+                    sum: c.sum,
+                    description: c.description,
+                    day: new Date(c.date).getDate()
+                }))
+            return { [cat]: items }
         })
 
-        res.json({ userid: Number(id), year: Number(year), month: Number(month), report })
+        res.json({ userid: Number(id), year: Number(year), month: Number(month), costs })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
